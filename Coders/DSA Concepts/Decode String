@@ -1,0 +1,47 @@
+class Solution {
+
+   int start = 0;
+
+   string Solve(string &s )
+   {
+      
+       string ans = "";
+
+     
+
+       while( start < s.length() && s[start] >= 'a' && s[start]<= 'z' && s[start] != ']' )
+       ans.push_back(s[start++]);
+    
+       if(start >= s.length() || s[start] == ']')
+       return ans;
+    
+       string num = "";
+     
+     
+       while(s[start] != '[' )
+       num.push_back(s[start++]);
+       int n = stoi(num) ;
+     
+     
+       start++;
+    
+       string repeat = Solve(s );
+    
+      for(int k = 0 ; k< n ; k++)
+           ans+= repeat;
+
+     
+
+       start++;
+     
+     
+        return ans + Solve(s);
+        
+}
+
+public:
+    string decodeString(string s) {
+        
+        return Solve(s);
+    }
+};
